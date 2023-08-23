@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boost 搜索引擎</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: white;
+    }
+
+    #results-container {
+      margin-top: 20px;
+      max-height: 600px;
+      /* 设置一个最大高度 */
+      overflow: auto;
+      /* 添加滚动效果 */
+    }
+
+    #title {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    #search-container {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    #search-term {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-bottom: 2px solid #007bff;
+      width: 600px;
+      /* 调整宽度 */
+      transition: border-color 0.3s;
+    }
+
+    #search-term:focus {
+      border-color: #0056b3;
+      outline: none;
+    }
+
+    #search-button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    #search-button:hover {
+      background-color: #0056b3;
+    }
+
+    #results-container {
+      margin-top: 20px;
+    }
+
+    .result {
+      margin: 10px;
+      padding: 10px;
+      background-color: white;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .result h2 a {
+      font-size: 24px;
+      color: #007bff;
+      text-decoration: none;
+      /* 保持下划线样式一致 */
+    }
+
+    .result h2 a:hover {
+      text-decoration: underline;
+      /* 保持下划线样式一致 */
+    }
+
+    .result p {
+      font-size: 16px;
+      /* 调整段落文本大小 */
+    }
+
+    .result i {
+      font-size: 14px;
+      /* 调整URL文本大小 */
+    }
+
+    .result span {
+      font-size: 14px;
+      /* 调整URL文本大小 */
+      color: #007bff;
+      text-decoration: none;
+      display: block;
+      margin-top: 5px;
+    }
+
+    #copyright {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 12px;
+      color: #007bff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="title"><i class="fas fa-rocket"></i> Boost 搜索引擎</div>
+  <div id="search-container">
+    <input type="text" id="search-term" placeholder="搜索关键词" onkeyup="handleKeyUp(event)">
+    <button id="search-button" onclick="Search()"><i class="fas fa-search"></i> 搜索</button>
+  </div>
+  <div id="results-container"></div>
+  <div id="copyright">
+    © 2023 Boost 搜索引擎. 版权所有 | 由FX制作
+  </div>
+  <script>
+    function handleKeyUp(event) {
+      if (event.key === 'Enter') {
+        Search();
+      }
+    }
+
+    function Search() {
+      let query = $("#search-term").val();
+
+      $.ajax({
+        type: "GET",
+        url: "/s?word=" + query,
+        success: function (data) {
+          buildHtml(data);
+        }
+      });
+    }
+
+    function buildHtml(data) 
+    {
+      let resultContainer = $("#results-container");
+      resultContainer.empty();
+
+      for (let elem of data) {
+        let resultItem = $("<div>", {
+          class: "result"
+        });
+
+        let title = $("<h2>").append(
+          $("<a>", {
+            text: elem.title,
+            href: elem.url,
+            target: "_blank"
+          })
+        );
+
+        let pLabel = $("<p>", {
+          text: elem.desc
+        });
+
+        let urlLabel = $("<span>", {
+          text: elem.url
+        });
+
+        title.appendTo(resultItem);
+        pLabel.appendTo(resultItem);
+        urlLabel.appendTo(resultItem);
+
+        resultItem.appendTo(resultContainer);
+      }
+    }
+  </script>
+</body>
+
+</html>
