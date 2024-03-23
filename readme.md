@@ -17,7 +17,10 @@
 2. 进入项目目录：cd ./boost_searcher
 
 3. 安装依赖项：
-cppjieba httplib boost 
+
+- cppjieba：[cppjieba GitHub](https://github.com/yanyiwu/cppjieba)
+- httplib：[httplib GitHub](https://github.com/yhirose/cpp-httplib)
+- boost：[Boost C++ Libraries](https://www.boost.org/)
 
 
 4. 编译服务
