@@ -7,8 +7,8 @@
 #include <fstream>
 #include <thread>
 #include <mutex>
-#include "util.hpp"
-#include "cppjieba/Jieba.hpp"
+#include "comm/util.hpp"
+#include "comm/cppjieba/Jieba.hpp"
 using namespace std;
 
 struct Docinfo_ix

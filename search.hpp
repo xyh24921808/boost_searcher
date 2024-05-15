@@ -1,7 +1,7 @@
 // 本程序是搜索功能的实现
 #pragma once
 #include "index.hpp"
-#include "util.hpp"
+#include "comm/util.hpp"
 #include <set>
 #include <algorithm>
 #include <json/json.h>

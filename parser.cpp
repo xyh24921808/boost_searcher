@@ -1,6 +1,6 @@
 // 此程序是去掉库文档的标签工作
 //    C++/20
-#include "util.hpp"
+#include "comm/util.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
