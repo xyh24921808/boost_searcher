@@ -1,9 +1,10 @@
 #include "comm/httplib.h"
 #include "search.hpp"
 
-const string input = "./date/raw_html/raw.txt";
+const string input = "./data/raw_html/raw.txt";
 const string root_path = "./wwwroot";
 
+const string pre_path="";
 int main()
 {
     Searcher search;
@@ -11,7 +12,7 @@ int main()
 
     httplib::Server svr;
     svr.set_base_dir(root_path.c_str());
-    svr.Get("/s", [&search](const httplib::Request &req, httplib::Response &rsp)
+    svr.Get(pre_path+"/s", [&search](const httplib::Request &req, httplib::Response &rsp)
             {
             if(!req.has_param("word"))
             {

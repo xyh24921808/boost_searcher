@@ -1,7 +1,7 @@
 #include "search.hpp"
 #include <string>
 
-const string PATH = "./date/raw_html/raw.txt";
+const string PATH = "./data/raw_html/raw.txt";
 
 int main(void)
 {

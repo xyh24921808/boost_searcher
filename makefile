@@ -13,6 +13,6 @@ httpserver:server.cpp
 
 .PHONY:clean
 clean:
-	rm -rf parser debug httpserver ./date/raw_html/raw.txt
-	touch ./date/raw_html/raw.txt
+	rm -rf parser debug httpserver ./data/raw_html/raw.txt
+	touch ./data/raw_html/raw.txt
 	
