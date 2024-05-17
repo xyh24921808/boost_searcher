@@ -146,7 +146,7 @@
       let query = $("#search-term").val();
 
       $.ajax({
-        type: "GET",
+        type: "POST",
         url: "BS/s?word=" + query,
         success: function (data) {
           buildHtml(data);

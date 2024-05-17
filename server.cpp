@@ -58,6 +58,6 @@ int main(int argnum, char *argvs[])
     svr.Post(pre_path+"/s",Http_search_post);
 
     //svr.set_base_dir(root_path.c_str());
-    svr.listen("127.0.0.1",port);
+    svr.listen("0.0.0.0",port);
     return 0;
 }
