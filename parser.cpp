@@ -15,10 +15,10 @@ vector<string>src_url_path={"https://www.boost.org/doc/libs/1_83_0/doc/html",
 
 
 // html原始文件的目录
-vector<string>src_path_vc={"date/input/doc","date/input/libs"};
+vector<string>src_path_vc={"data/input/doc"};
 
 // 去标签之后html存放的目录
-const string output = "date/raw_html/raw.txt";
+const string output = "data/raw_html/raw.txt";
 
 struct Docinfo
 {
