@@ -4,14 +4,33 @@
 const string input = "./data/raw_html/raw.txt";
 const string root_path = "./wwwroot";
 
-const string pre_path="";
+const string pre_path="/BS";
+
+
+void Http_get_index(const httplib::Request &req, httplib::Response &rsp)
+{
+    string html;
+    if(File_util::Read(root_path,html))
+    {
+        rsp.set_content(html, "text/html;charset=utf-8");
+    }
+    else 
+    {
+        rsp.status = 404;
+        rsp.set_content("404 Not Found", "text/plain");
+    }
+}
+
 int main()
 {
     Searcher search;
     search.InitSearcher(input);
 
     httplib::Server svr;
-    svr.set_base_dir(root_path.c_str());
+    
+    svr.Get(pre_path,Http_get_index);
+    svr.Get(pre_path+"/",Http_get_index);
+
     svr.Get(pre_path+"/s", [&search](const httplib::Request &req, httplib::Response &rsp)
             {
             if(!req.has_param("word"))
@@ -26,6 +45,7 @@ int main()
             search.Search(word,json_string);
             rsp.set_content(json_string, "application/json"); });
 
-    svr.listen("0.0.0.0", 8080);
+    //svr.set_base_dir(root_path.c_str());
+    svr.listen("127.0.0.1", 8080);
     return 0;
 }
