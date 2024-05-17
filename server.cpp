@@ -55,7 +55,7 @@ int main(int argnum, char *argvs[])
     svr.Get(pre_path,Http_get_index);
     svr.Get(pre_path+"/",Http_get_index);
 
-    svr.Get(pre_path+"/s",Http_search_post);
+    svr.Post(pre_path+"/s",Http_search_post);
 
     //svr.set_base_dir(root_path.c_str());
     svr.listen("127.0.0.1",port);
