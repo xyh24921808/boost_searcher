@@ -14,7 +14,7 @@ Searcher*sc_ptr=nullptr;
 void Http_get_index(const httplib::Request &req, httplib::Response &rsp)
 {
     string html;
-    if(File_util::Read(root_path,html))
+    if(File_util::Read(root_path+"/index.html",html))
     {
         rsp.set_content(html, "text/html;charset=utf-8");
     }
